@@ -195,7 +195,13 @@ extension MultiSlider {
         } else {
             labelValue = value[i]
         }
-        valueLabels[i].text = valueLabelFormatter.string(from: NSNumber(value: Double(labelValue)))
+        if let dateFormatter = self.valueLabelDateFormatter {
+            let date = Date(timeIntervalSince1970: Double(labelValue))
+            valueLabels[i].text = dateFormatter.string(from: date)
+        }else {
+            valueLabels[i].text = valueLabelFormatter.string(from: NSNumber(value: Double(labelValue)))
+        }
+        
     }
 
     func updateAllValueLabels() {

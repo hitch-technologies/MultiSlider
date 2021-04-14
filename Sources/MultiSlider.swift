@@ -195,6 +195,16 @@ open class MultiSlider: UIControl {
             }
         }
     }
+    
+    @objc open dynamic var valueLabelDateFormatter: DateFormatter? {
+        didSet {
+            updateAllValueLabels()
+            if #available(iOS 11.0, *) {
+                oldValue.removeObserverForAllProperties(observer: self)
+                valueLabelFormatter.addObserverForAllProperties(observer: self)
+            }
+        }
+    }
 
     // MARK: - Subviews
 

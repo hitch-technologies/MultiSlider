@@ -200,7 +200,7 @@ open class MultiSlider: UIControl {
         didSet {
             updateAllValueLabels()
             if #available(iOS 11.0, *) {
-                oldValue.removeObserverForAllProperties(observer: self)
+                oldValue?.removeObserverForAllProperties(observer: self)
                 valueLabelFormatter.addObserverForAllProperties(observer: self)
             }
         }
